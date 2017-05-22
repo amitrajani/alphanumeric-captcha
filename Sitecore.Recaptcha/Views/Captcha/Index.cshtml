@@ -1,0 +1,17 @@
+﻿
+<div>
+    <img id="cptImage" src="@Url.Action("ReCaptcha", "Captcha")" alt="" />&nbsp;<a id="btnReset" onclick="resetCaptcha()" style="cursor: pointer;"><img src="~/image/reset-icon-button.png" alt="Reset Captcha" /></a>
+</div>
+
+<script type="text/javascript">
+    function resetCaptcha() {
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: "@Url.Action("RegenerateCaptcha", "Captcha")",
+            success: function (data) {
+                $("#cptImage").attr("src", "data:image/jpg;base64," + data)
+            }
+        })
+    }
+</script>
